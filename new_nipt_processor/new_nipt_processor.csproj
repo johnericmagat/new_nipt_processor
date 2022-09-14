@@ -194,6 +194,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BAL\ReservationsBAL.cs" />
+    <Compile Include="DAL\ReservationsDAL.cs" />
     <Compile Include="Helper\GetVersionHelper.cs" />
     <Compile Include="Helper\WriteLogFileHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -206,6 +208,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ReservationsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -244,11 +247,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BAL\" />
-    <Folder Include="DAL\" />
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
