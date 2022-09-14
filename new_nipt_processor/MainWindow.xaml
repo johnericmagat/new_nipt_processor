@@ -1,0 +1,48 @@
+﻿<Window x:Class="new_nipt_processor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="450" Width="800">
+
+    <Grid x:Name="GrdMain" Style="{StaticResource PageStyle}" Margin="4 4 4 4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                    <Label x:Name="LblNewNIPTProcessor" Content="New NIPT Processor" Style="{StaticResource PageHeaderStyle}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                    <Button x:Name="BtnProcess" Content="Process" ToolTip="Process" Margin="0 0 0 0" Style="{StaticResource BlankButtonStyle}" Foreground="#FFFFFF" Click="BtnProcess_Click"/>
+                    <Button x:Name="BtnClose" Content="Close" ToolTip="Close" Margin="0 0 0 0" Style="{StaticResource BlankButtonStyle}" Foreground="#FFFFFF" Click="BtnClose_Click"/>
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <Label Content="Filename and Path:" Style="{StaticResource LabelFieldStyle}"/>
+                    <TextBox x:Name="TxtFilePath" Style="{StaticResource TextFieldStyle}"/>
+                    <Button x:Name="BtnOpen" Content="Open" ToolTip="Open" Margin="0 0 0 0" Style="{StaticResource BlankButtonStyle1}" Foreground="#FFFFFF" Width="120" Click="BtnOpen_Click"/>
+                </DockPanel>
+                <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <Label Content="Progress:" Style="{StaticResource LabelFieldStyle}"/>
+                    <ProgressBar x:Name="ProgUserProcess" Width="380" Background="#FFFFFF"/>
+                    <TextBlock Text="{Binding ElementName=ProgUserProcess, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2 0 0 0"/>
+                </DockPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
