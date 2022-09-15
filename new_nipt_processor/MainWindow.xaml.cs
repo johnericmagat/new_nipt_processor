@@ -136,15 +136,11 @@ namespace new_nipt_processor
 				Application app = new Application();
 				Workbook wb = app.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
 				Worksheet ws = wb.Worksheets[1];
-				ws.Range["A1"].Value = "EmployeeId";
-				ws.Range["B1"].Value = "Fullname";
-				ws.Range["C1"].Value = "Address";
-				ws.Range["D1"].Value = "ContactNo";
-				ws.Range["E1"].Value = "Email";
-				ws.Range["F1"].Value = "DateOfBirth";
-				ws.Range["G1"].Value = "Height";
-				ws.Range["H1"].Value = "Weight";
-				ws.Range["I1"].Value = "Company";
+				ws.Range["A1"].Value = "illumina_report_id";
+				ws.Range["B1"].Value = "reserve_datetime";
+				ws.Range["C1"].Value = "name";
+				ws.Range["D1"].Value = "email";
+				ws.Range["E1"].Value = "created_at";
 
 				if (content.Rows.Count > 0)
 				{
@@ -156,10 +152,6 @@ namespace new_nipt_processor
 						ws.Range["C" + (cnt + 1).ToString()].Value = employee[2].ToString();
 						ws.Range["D" + (cnt + 1).ToString()].Value = employee[3].ToString();
 						ws.Range["E" + (cnt + 1).ToString()].Value = employee[4].ToString();
-						ws.Range["F" + (cnt + 1).ToString()].Value = employee[5].ToString();
-						ws.Range["G" + (cnt + 1).ToString()].Value = employee[6].ToString();
-						ws.Range["H" + (cnt + 1).ToString()].Value = employee[7].ToString();
-						ws.Range["I" + (cnt + 1).ToString()].Value = employee[8].ToString();
 						cnt++;
 					}
 				}
