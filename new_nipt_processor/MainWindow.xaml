@@ -48,11 +48,6 @@
                     <TextBox x:Name="TxtFilePath" Style="{StaticResource TextFieldStyle}" Width="380"/>
                     <Button x:Name="BtnOpen" Content="Open" ToolTip="Open" Margin="0 0 0 0" Style="{StaticResource BlankButtonStyle1}" Foreground="#FFFFFF" Width="120" Click="BtnOpen_Click"/>
                 </DockPanel>
-                <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                    <Label Content="Progress:" Style="{StaticResource LabelFieldStyle}"/>
-                    <ProgressBar x:Name="ProgUserProcess" Width="380" Background="#FFFFFF"/>
-                    <TextBlock Text="{Binding ElementName=ProgUserProcess, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2 0 0 0"/>
-                </DockPanel>
             </Grid>
         </StackPanel>
     </Grid>

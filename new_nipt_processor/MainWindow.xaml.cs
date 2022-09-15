@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 using Window = System.Windows.Window;
@@ -85,12 +86,10 @@ namespace new_nipt_processor
 					}
 				}
 
-
-
-
-
-
-
+				if (excelReservations.Rows.Count > 0)
+				{
+					CreateExcelFile(excelReservations);
+				}
 			}
 			catch (Exception ex)
 			{
