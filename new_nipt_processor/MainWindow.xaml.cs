@@ -7,9 +7,9 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Threading;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 using Window = System.Windows.Window;
@@ -67,6 +67,58 @@ namespace new_nipt_processor
 				GetReservationsExcel();
 				GetReservationsTable();
 
+				//Check if there's duplicates in excel
+				try
+				{
+					DataTable excelDuplicates = new DataTable();
+					excelDuplicates = excelReservations.AsEnumerable()
+														.GroupBy(r => new
+														{
+															illumina_report_id = r["illumina_report_id"]
+														})
+														.Where(g => g.Count() > 1)
+														.Select(g => g.OrderBy(row => row["illumina_report_id"]).First())
+														.CopyToDataTable();
+
+					if (excelDuplicates.Rows.Count > 0)
+					{
+						MessageBox.Show("There is/are duplicate records in excel file.", "CREATE FILE",
+							MessageBoxButton.OK, MessageBoxImage.Information);
+
+						CreateExcelFileDuplicatesInDataTable(excelDuplicates, "DuplicatesInExcel");
+						return;
+					}
+				}
+				catch
+				{
+				}
+
+				//Check if theres duplicates in reservations table
+				try
+				{
+					DataTable tableDuplicates = new DataTable();
+					tableDuplicates = tableReservations.AsEnumerable()
+														.GroupBy(r => new
+														{
+															illumina_report_id = r["illumina_report_id"]
+														})
+														.Where(g => g.Count() > 1)
+														.Select(g => g.OrderBy(row => row["illumina_report_id"]).First())
+														.CopyToDataTable();
+
+					if (tableDuplicates.Rows.Count > 0)
+					{
+						MessageBox.Show("There is/are duplicate records in table.", "CREATE FILE",
+							MessageBoxButton.OK, MessageBoxImage.Information);
+
+						CreateExcelFileDuplicatesInDataTable(tableDuplicates, "DuplicatesInTable");
+						return;
+					}
+				}
+				catch
+				{
+				}
+
 				foreach (DataRow row in excelReservations.Select())
 				{
 					foreach (DataRow row2 in tableReservations.Select())
@@ -90,6 +142,9 @@ namespace new_nipt_processor
 				{
 					CreateExcelFile(excelReservations);
 				}
+
+				MessageBox.Show("Done!", "CHECK FINISHED",
+					MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -97,7 +152,7 @@ namespace new_nipt_processor
 			}
 		}
 
-		private	void GetReservationsExcel()
+		private void GetReservationsExcel()
 		{
 			excelReservations = new DataTable();
 
@@ -120,6 +175,39 @@ namespace new_nipt_processor
 			DateTime de = Convert.ToDateTime(DtpDateEnd.Text.ToString());
 
 			tableReservations = ReservationsBAL.FilterUsers(ds.ToString("yyyy-MM-dd"), de.ToString("yyyy-MM-dd"));
+		}
+
+		private void CreateExcelFileDuplicatesInDataTable(DataTable content, string fileName)
+		{
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.FileName = fileName;
+			saveFileDialog.DefaultExt = ".xlsx";
+			saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+
+			Nullable<bool> result = saveFileDialog.ShowDialog();
+			if (result == true)
+			{
+				Application app = new Application();
+				Workbook wb = app.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+				Worksheet ws = wb.Worksheets[1];
+				ws.Range["A1"].Value = "illumina_report_id";
+
+				if (content.Rows.Count > 0)
+				{
+					int cnt = 1;
+					foreach (DataRow employee in content.Rows)
+					{
+						ws.Range["A" + (cnt + 1).ToString()].Value = employee[0].ToString();
+						cnt++;
+					}
+				}
+				wb.SaveAs(saveFileDialog.FileName, XlFileFormat.xlWorkbookDefault, Type.Missing,
+					Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+				wb.Close();
+
+				MessageBox.Show("Successfully created on file path " + saveFileDialog.FileName, "CREATE FILE",
+					MessageBoxButton.OK, MessageBoxImage.Information);
+			}
 		}
 
 		private void CreateExcelFile(DataTable content)
@@ -158,7 +246,8 @@ namespace new_nipt_processor
 					Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 				wb.Close();
 
-				MessageBox.Show("Successfully created on file path " + saveFileDialog.FileName, "CREATE FILE", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("Successfully created on file path " + saveFileDialog.FileName, "CREATE FILE",
+					MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 		}
 

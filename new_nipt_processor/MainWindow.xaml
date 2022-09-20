@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="450" Width="800">
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="450" Width="800" WindowState="Maximized">
 
     <Grid x:Name="GrdMain" Style="{StaticResource PageStyle}" Margin="4 4 4 4">
         <Grid.RowDefinitions>

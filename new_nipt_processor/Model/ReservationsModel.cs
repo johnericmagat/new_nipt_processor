@@ -10,5 +10,6 @@ namespace new_nipt_processor.Model
 		public String Name { get; set; }
 		public String Email { get; set; }
 		public DateTime Created_At { get; set; }
+		public DateTime Deleted_At { get; set; }
 	}
 }
