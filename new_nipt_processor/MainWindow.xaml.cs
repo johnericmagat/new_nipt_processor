@@ -108,10 +108,10 @@ namespace new_nipt_processor
 
 					if (tableDuplicates.Rows.Count > 0)
 					{
-						MessageBox.Show("There is/are duplicate records in table.", "CREATE FILE",
+						MessageBox.Show("There is/are duplicate records in reservations table.", "CREATE FILE",
 							MessageBoxButton.OK, MessageBoxImage.Information);
 
-						CreateExcelFileDuplicatesInDataTable(tableDuplicates, "DuplicatesInTable");
+						CreateExcelFileDuplicatesInDataTable(tableDuplicates, "DuplicatesInReservationsTable");
 						return;
 					}
 				}
