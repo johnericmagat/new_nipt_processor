@@ -300,5 +300,17 @@ namespace new_nipt_processor
 				System.Windows.Application.Current.Shutdown();
 			}
 		}
+
+		private void ChkOldDatabase_Checked(object sender, RoutedEventArgs e)
+		{
+			DtpDateStartComponent.Visibility = Visibility.Hidden;
+			DtpDateEndComponent.Visibility = Visibility.Hidden;
+		}
+
+		private void ChkOldDatabase_Unchecked(object sender, RoutedEventArgs e)
+		{
+			DtpDateStartComponent.Visibility = Visibility.Visible;
+			DtpDateEndComponent.Visibility = Visibility.Visible;
+		}
 	}
 }

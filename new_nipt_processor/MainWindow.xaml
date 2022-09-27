@@ -36,13 +36,13 @@
                 </DockPanel>
                 <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
                     <Label Content="Old Database:" Style="{StaticResource LabelFieldStyle}"/>
-                    <CheckBox x:Name="ChkOldDatabase" Background="#FFFFFF" Style="{StaticResource CheckBoxFieldStyle}" IsEnabled="True"/>
+                    <CheckBox x:Name="ChkOldDatabase" Background="#FFFFFF" Style="{StaticResource CheckBoxFieldStyle}" IsEnabled="True" Checked="ChkOldDatabase_Checked" Unchecked="ChkOldDatabase_Unchecked"/>
                 </DockPanel>
-                <DockPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
+                <DockPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" x:Name="DtpDateStartComponent">
                     <Label Content="Date Start:" Style="{StaticResource LabelFieldStyle}"/>
                     <DatePicker x:Name="DtpDateStart" Width="120" FontSize="10" Background="#FFFFFF"/>
                 </DockPanel>
-                <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left">
+                <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" x:Name="DtpDateEndComponent">
                     <Label Content="Date End:" Style="{StaticResource LabelFieldStyle}"/>
                     <DatePicker x:Name="DtpDateEnd" Width="120" FontSize="10" Background="#FFFFFF"/>
                 </DockPanel>
