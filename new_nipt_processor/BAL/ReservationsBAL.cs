@@ -9,5 +9,10 @@ namespace new_nipt_processor.BAL
 		{
 			return ReservationsDAL.FilterReservations("FilterReservations", dateStart, dateEnd);
 		}
+
+		public static DataTable FilterReservationsAll()
+		{
+			return ReservationsDAL.FilterReservationsAll("FilterReservationsAll");
+		}
 	}
 }

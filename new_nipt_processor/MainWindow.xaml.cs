@@ -65,7 +65,15 @@ namespace new_nipt_processor
 			try
 			{
 				GetReservationsExcel();
-				GetReservationsTable();
+
+				if (ChkOldDatabase.IsChecked == true)
+				{
+					GetReservationsTableAll();
+				}
+				else
+				{
+					GetReservationsTable();
+				}
 
 				//Check if there's duplicates in excel
 				try
@@ -175,6 +183,11 @@ namespace new_nipt_processor
 			DateTime de = Convert.ToDateTime(DtpDateEnd.Text.ToString());
 
 			tableReservations = ReservationsBAL.FilterUsers(ds.ToString("yyyy-MM-dd"), de.ToString("yyyy-MM-dd"));
+		}
+
+		private void GetReservationsTableAll()
+		{
+			tableReservations = ReservationsBAL.FilterReservationsAll();
 		}
 
 		private void CreateExcelFileDuplicatesInDataTable(DataTable content, string fileName)
