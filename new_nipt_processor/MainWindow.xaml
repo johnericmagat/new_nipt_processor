@@ -21,7 +21,6 @@
                     <RowDefinition Height="26"/>
                     <RowDefinition Height="26"/>
                     <RowDefinition Height="26"/>
-                    <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -36,17 +35,9 @@
                 </DockPanel>
                 <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
                     <Label Content="Old Database:" Style="{StaticResource LabelFieldStyle}"/>
-                    <CheckBox x:Name="ChkOldDatabase" Background="#FFFFFF" Style="{StaticResource CheckBoxFieldStyle}" IsEnabled="True" Checked="ChkOldDatabase_Checked" Unchecked="ChkOldDatabase_Unchecked"/>
+                    <CheckBox x:Name="ChkOldDatabase" Background="#FFFFFF" Style="{StaticResource CheckBoxFieldStyle}" IsEnabled="True" />
                 </DockPanel>
-                <DockPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" x:Name="DtpDateStartComponent">
-                    <Label Content="Date Start:" Style="{StaticResource LabelFieldStyle}"/>
-                    <DatePicker x:Name="DtpDateStart" Width="120" FontSize="10" Background="#FFFFFF"/>
-                </DockPanel>
-                <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" x:Name="DtpDateEndComponent">
-                    <Label Content="Date End:" Style="{StaticResource LabelFieldStyle}"/>
-                    <DatePicker x:Name="DtpDateEnd" Width="120" FontSize="10" Background="#FFFFFF"/>
-                </DockPanel>
-                <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
                     <Label Content="Filename and Path:" Style="{StaticResource LabelFieldStyle}"/>
                     <TextBox x:Name="TxtFilePath" Style="{StaticResource TextFieldStyle}" Width="380"/>
                     <Button x:Name="BtnOpen" Content="Open" ToolTip="Open" Margin="0 0 0 0" Style="{StaticResource BlankButtonStyle1}" Foreground="#FFFFFF" Width="120" Click="BtnOpen_Click"/>

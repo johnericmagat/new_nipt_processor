@@ -5,9 +5,9 @@ namespace new_nipt_processor.BAL
 {
 	public class ReservationsBAL
 	{
-		public static DataTable FilterUsers(string dateStart, string dateEnd)
+		public static DataTable FilterReservations()
 		{
-			return ReservationsDAL.FilterReservations("FilterReservations", dateStart, dateEnd);
+			return ReservationsDAL.FilterReservations("FilterReservations");
 		}
 
 		public static DataTable FilterReservationsAll()

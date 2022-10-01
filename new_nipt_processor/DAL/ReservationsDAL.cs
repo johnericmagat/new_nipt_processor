@@ -6,7 +6,7 @@ namespace new_nipt_processor.DAL
 {
 	public class ReservationsDAL
 	{
-		public static DataTable FilterReservations(string commandString, string dateStart, string dateEnd)
+		public static DataTable FilterReservations(string commandString)
 		{
 			DataTable reservations = new DataTable();
 
@@ -15,8 +15,6 @@ namespace new_nipt_processor.DAL
 
 			MySqlCommand cmd = new MySqlCommand(commandString, mySqlConnection);
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.Parameters.AddWithValue("@inDateStart", dateStart);
-			cmd.Parameters.AddWithValue("@inDateEnd", dateEnd);
 
 			MySqlDataAdapter adt = new MySqlDataAdapter(cmd);
 			adt.Fill(reservations);

@@ -179,10 +179,7 @@ namespace new_nipt_processor
 
 		private void GetReservationsTable()
 		{
-			DateTime ds = Convert.ToDateTime(DtpDateStart.Text.ToString());
-			DateTime de = Convert.ToDateTime(DtpDateEnd.Text.ToString());
-
-			tableReservations = ReservationsBAL.FilterUsers(ds.ToString("yyyy-MM-dd"), de.ToString("yyyy-MM-dd"));
+			tableReservations = ReservationsBAL.FilterReservations();
 		}
 
 		private void GetReservationsTableAll()
@@ -299,18 +296,6 @@ namespace new_nipt_processor
 			{
 				System.Windows.Application.Current.Shutdown();
 			}
-		}
-
-		private void ChkOldDatabase_Checked(object sender, RoutedEventArgs e)
-		{
-			DtpDateStartComponent.Visibility = Visibility.Hidden;
-			DtpDateEndComponent.Visibility = Visibility.Hidden;
-		}
-
-		private void ChkOldDatabase_Unchecked(object sender, RoutedEventArgs e)
-		{
-			DtpDateStartComponent.Visibility = Visibility.Visible;
-			DtpDateEndComponent.Visibility = Visibility.Visible;
 		}
 	}
 }
